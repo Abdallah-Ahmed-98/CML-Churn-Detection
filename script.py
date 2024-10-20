@@ -15,9 +15,9 @@ from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn_features.transformers import DataFrameSelector
 
 ## skelarn -- models
-from sklearn.neighbors import KNeighborsClassifier
+#from sklearn.neighbors import KNeighborsClassifier
 #from sklearn.ensemble import RandomForestClassifier
-# from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression
 
 ## sklearn -- metrics
 from sklearn.metrics import f1_score, confusion_matrix
@@ -119,7 +119,9 @@ def train_model(X_train, y_train, plot_name='', class_weight=None):
     
     global clf_name
 
-    clf = KNeighborsClassifier(n_neighbors=9, weights="distance", metric="minkowski", p=2, algorithm="auto")
+    #clf = KNeighborsClassifier(n_neighbors=9, weights="distance", metric="minkowski", p=2, algorithm="auto")
+    clf = LogisticRegression(C=2.5, max_iter=1000, random_state=45, class_weight=class_weight)
+    
     clf.fit(X_train, y_train)
 
     y_pred_test = clf.predict(X_test_final)
@@ -155,7 +157,7 @@ def train_model(X_train, y_train, plot_name='', class_weight=None):
 train_model(X_train=X_train_final, y_train=y_train, plot_name='without-imbalance', class_weight=None)
 
 ## 2. with considering the imabalancing data using class_weights
-#train_model(X_train=X_train_final, y_train=y_train, plot_name='with-class-weights', class_weight=dict_weights)
+train_model(X_train=X_train_final, y_train=y_train, plot_name='with-class-weights', class_weight=dict_weights)
 
 ## 3. with considering the imabalancing data using oversampled data (SMOTE)
 train_model(X_train=X_train_resmapled, y_train=y_train_resampled, plot_name=f'with-SMOTE', class_weight=None)

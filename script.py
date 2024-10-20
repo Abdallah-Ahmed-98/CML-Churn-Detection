@@ -163,7 +163,7 @@ train_model(X_train=X_train_resmapled, y_train=y_train_resampled, plot_name=f'wi
 
 
 ## Combine all conf matrix in one
-confusion_matrix_paths = [f'./without-imbalance.png', f'./with-class-weights.png', f'./with-SMOTE.png']
+confusion_matrix_paths = [f'./without-imbalance.png', f'./with-SMOTE.png']
 
 ## Load and plot each confusion matrix
 plt.figure(figsize=(15, 5))  # Adjust figure size as needed
